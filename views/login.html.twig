@@ -1,18 +1,16 @@
 {% extends 'layout.html.twig' %}
-{% block page_title %}Login{% endblock %}
-{% block content %}
 
-<div class="col">
-    <form action="login.php" method="POST">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" class="form-control" value="<?= $username ?>">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+{% block page_title %}{{ parent() }} - login {% endblock %}
+
+{% block content %}
+    <div class="errors">
+        {{ error }}
+    </div>
+    <form action="?action=login" method="POST" class="loginForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" value="{{ username }}"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit">
     </form>
-</div>
 {% endblock %}
