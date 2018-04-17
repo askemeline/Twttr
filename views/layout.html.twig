@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>{% block page_title %}{% endblock %}</title>
-    <link rel="stylesheet" href="assets/style.css">
-  </head>
-  <body>
-    {% block content %}{% endblock %}
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>{% block page_title %}Filer{% endblock %}</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+{% block nav %}
+  <div class="nav-bar">
+    <a href="?action=home">
+      <img id="logo" src="http://icons.iconarchive.com/icons/designbolts/minimalist-social/256/Twitter-2-icon.png" alt="">
+    </a>
+      {% if session['u_id'] is not defined %}
+        <a class="right register" href="?action=register">Sign up</a>
+        <a class="right login" href="?action=login">Log in</a>
+      {% else %}
+        <a class="right register" href="?action=logout">Log out</a>
+        <a class="right register" href="?action=upload">upload</a>
+      {% endif %}
+
+  </div>
+{% endblock %}
+{% block errorblock %}
+    {% if errors is defined %}
+      <p>{{errors}}</p>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% if errors is defined %}
+      <p>{{errors}}</p>
+    {% endif %}
+{% endblock %}
+
+<div class="footer">
+    {% block footer %} &copy; 2018 {% endblock %}
+</div>
+</body>
 </html>
