@@ -1,4 +1,4 @@
-# Cool Framework by Sup'Internet DEV 2020
+# Twtter by Karla & Emeline
 
 Installation
 ============
@@ -13,10 +13,3 @@ or
 ```php composer.phar install```
 
 You can get composer here : <https://getcomposer.org/download/>
-
-To keep in mind
-===============
-
-- Filer
-- Pokedex (with an API)
-- Intranet

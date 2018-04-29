@@ -12,9 +12,9 @@ class MainController extends BaseController
         session_start();
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
-            $manager = new FileManager();
-            $result = $manager->showFiles();
-            $data['files'] = $result;
+//            $manager = new FileManager();
+//            $result = $manager->showFiles();
+//            $data['files'] = $result;
         }
         return $this->render('home.html.twig', $data);
     }

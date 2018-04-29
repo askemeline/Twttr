@@ -3,8 +3,13 @@
 {% block page_title %}Cool Framework{% endblock %}
 
 {% block content %}
+    {% if session is not defined %}
 <h1>
   Welcome to Twtter<br>
   <small>By Karla & Emeline The BADASSSSSSS (Future MAJOR PROMO or 	resigning...) </small>
 </h1>
+{% else %}
+Hello {{ session['u_first'] }}
+{% endif %}
+
 {% endblock %}
