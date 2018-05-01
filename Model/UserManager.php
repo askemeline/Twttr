@@ -2,9 +2,6 @@
 
 namespace Model;
 
-use Model\BaseManager;
-
-
 class UserManager extends BaseManager
 {
     public function registerUser($firstname, $lastname, $username, $email, $password)

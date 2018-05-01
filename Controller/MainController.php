@@ -35,10 +35,10 @@ class MainController extends BaseController
             $manager = new UserManager();
             $users = $manager->registerUser($firstname, $lastname,$username, $email, $password);
             if($users === true){
-//                error_log("[". date('Y-m-d H:i:s') . "] ".$email." viens de s'inscrire", 3, "log/access.log");
+                error_log("[". date('Y-m-d H:i:s') . "] ".$email." viens de s'inscrire", 3, "log/access.log");
             } else {
                 $data['errors'] = "Something Bad Happend, Please Try later !";
-//                error_log("[". date('Y-m-d H:i:s') . "] "."l'inscription de ". $email . " a echouer", 3, "log/security.log");
+                error_log("[". date('Y-m-d H:i:s') . "] "."l'inscription de ". $email . " a echouer", 3, "log/security.log");
                 return $this->render('register.html.twig', $data);
             }
             $this->redirectToRoute('home');
@@ -51,7 +51,7 @@ class MainController extends BaseController
         session_start();
         if (isset($_SESSION['u_id'])) {
             $this->redirectToRoute('home');
-//            error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " a tenter d'aller sur un lieu interdit", 3, "log/security.log");
+            error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " a tenter d'aller sur un lieu interdit", 3, "log/security.log");
         }
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = $_POST['email'];
@@ -61,9 +61,9 @@ class MainController extends BaseController
             if ($loginUser === false) {
                 $data['errors'] = "Something Bad Happend, Please Try later !";
 
-//                error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $email . " a echouer la connexion", 3, "log/security.log");
+                error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $email . " a echouer la connexion", 3, "log/security.log");
             } else {
-//                error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " s'est connecter", 3, "log/access.log");
+                error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " s'est connecter", 3, "log/access.log");
                 $this->redirectToRoute('home');
             }
         }
@@ -72,7 +72,7 @@ class MainController extends BaseController
     public function logoutAction()
     {
         session_start();
-//        error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " s'est deconnecter", 3, "log/access.log");
+        error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " s'est deconnecter", 3, "log/access.log");
         session_unset();
         session_destroy();
         $this->redirectToRoute('home');
