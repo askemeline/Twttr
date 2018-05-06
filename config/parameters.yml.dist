@@ -1,5 +1,9 @@
 db:
+<<<<<<< HEAD
     name: "test"
+=======
+    name: "twitter"
+>>>>>>> emeline
     user: "root"
     password: ""
     host: 127.0.0.1

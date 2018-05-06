@@ -14,7 +14,16 @@ class MainController extends BaseController
         session_start();
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
+<<<<<<< HEAD
 
+=======
+            $manager = new UserManager();
+            //$manager->showUsers();
+            $result = $manager->showUsers();
+            $data['users']=$result;
+
+            //  var_dump('<pre>',$result);
+>>>>>>> emeline
         }
         return $this->render('home.html.twig', $data);
     }
@@ -60,7 +69,6 @@ class MainController extends BaseController
             $loginUser = $manager->loginUser($email, $password);
             if ($loginUser === false) {
                 $data['errors'] = "Something Bad Happend, Please Try later !";
-
                 error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $email . " a echouer la connexion", 3, "log/security.log");
             } else {
                 error_log("[". date('Y-m-d H:i:s') . "] "."l'utilisateur ". $_SESSION['u_email'] . " s'est connecter", 3, "log/access.log");
@@ -78,5 +86,8 @@ class MainController extends BaseController
         session_destroy();
         $this->redirectToRoute('home');
     }
+//    public function showProfileAction(){
+//        $result = queryMysql("SELECT * FROM USER WHERE username='$username'")
+//    }
 
 }

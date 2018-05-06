@@ -2,6 +2,13 @@
 
 namespace Model;
 
+<<<<<<< HEAD
+=======
+//use BaseManager;
+//
+//require_once ('Model/BaseManager.php');
+
+>>>>>>> emeline
 class UserManager extends BaseManager{
 
     public function registerUser($firstname,$lastname,$email,$password){
@@ -47,6 +54,16 @@ class UserManager extends BaseManager{
                 return $error;
             }
         }
+    }
+    public function showUsers()
+    {
+
+        $pdo = $this->setPdo();
+        $stmt = $pdo->prepare("SELECT `firstname` FROM `users`");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump('<pre>',$result);
+        return $result;
     }
 
 }
