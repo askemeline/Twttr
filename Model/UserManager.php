@@ -1,14 +1,8 @@
 <?php
 
 namespace Model;
+use Cool\DBManager;
 
-<<<<<<< HEAD
-=======
-//use BaseManager;
-//
-//require_once ('Model/BaseManager.php');
-
->>>>>>> emeline
 class UserManager extends BaseManager{
 
     public function registerUser($firstname,$lastname,$email,$password){

@@ -14,7 +14,9 @@ class MainController extends BaseController
         session_start();
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
-            //$manager = new UserManager();
+
+
+            $manager = new UserManager();
             //$manager->showUsers();
             $result = $manager->showUsers();
             $data['users']=$result;
