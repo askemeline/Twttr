@@ -1,8 +1,10 @@
 <?php
+
 namespace Controller;
 
 use Cool\BaseController;
 use Model\UserManager;
+
 
 class MainController extends BaseController
 {
@@ -12,12 +14,11 @@ class MainController extends BaseController
         session_start();
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
-//            $manager = new FileManager();
-//            $result = $manager->showFiles();
-//            $data['files'] = $result;
+
         }
         return $this->render('home.html.twig', $data);
     }
+
     public function registerAction()
     {
         $data = [];
@@ -25,15 +26,13 @@ class MainController extends BaseController
         if (isset($_SESSION['u_id'])) {
             $this->redirectToRoute('home');
         }
-        if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+        if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password'])) {
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
-            $username = $_POST['username'];
             $email = $_POST['email'];
-
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $manager = new UserManager();
-            $users = $manager->registerUser($firstname, $lastname,$username, $email, $password);
+            $users = $manager->registerUser($firstname, $lastname, $email, $password);
             if($users === true){
                 error_log("[". date('Y-m-d H:i:s') . "] ".$email." viens de s'inscrire", 3, "log/access.log");
             } else {
@@ -45,6 +44,7 @@ class MainController extends BaseController
         }
         return $this->render('register.html.twig', $data);
     }
+
     public function loginAction()
     {
         $data = [];
@@ -69,6 +69,7 @@ class MainController extends BaseController
         }
         return $this->render('login.html.twig', $data);
     }
+
     public function logoutAction()
     {
         session_start();
