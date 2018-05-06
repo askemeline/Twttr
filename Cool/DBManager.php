@@ -2,6 +2,7 @@
 
 namespace Cool;
 use PDO;
+
 class DBManager
 {
     private $pdo;
@@ -18,7 +19,7 @@ class DBManager
         $password = $params['db']['password'];
         $pdo = new PDO($dsn, $user, $password);
         $this->setPdo($pdo);
-    }
+    } 
     
     private static $instance = NULL;
     
