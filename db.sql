@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost
--- Généré le :  mer. 11 avr. 2018 à 13:36
--- Version du serveur :  5.6.38
--- Version de PHP :  7.2.1
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  Dim 06 mai 2018 à 16:35
+-- Version du serveur :  5.7.19
+-- Version de PHP :  7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `twitter`
@@ -17,136 +25,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fav`
+-- Structure de la table `users`
 --
 
-CREATE TABLE `fav` (
-  `id` int(11) NOT NULL,
-  `fav_id` int(50) NOT NULL,
-  `username_id` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `follower`
---
-
-CREATE TABLE `follower` (
-  `id` int(11) NOT NULL,
-  `follower_id` varchar(255) NOT NULL,
-  `following_id` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `tweet`
---
-
-CREATE TABLE `tweet` (
-  `id` int(11) NOT NULL,
-  `retweet_id` int(11) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `tweet_text` varchar(255) NOT NULL,
-  `date` datetime NOT NULL,
-  `type` set('tweet','retweet') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `user`
---
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `firstname` varchar(55) NOT NULL,
-  `lastname` varchar(55) NOT NULL,
-  `username` varchar(255) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `creation` datetime NOT NULL,
+  `firstname` varchar(255) NOT NULL,
+  `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `creation` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `firstname` (`firstname`)
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
--- Index pour les tables déchargées
+-- Déchargement des données de la table `users`
 --
 
---
--- Index pour la table `fav`
---
-ALTER TABLE `fav`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fav_id` (`fav_id`);
+INSERT INTO `users` (`id`, `creation`, `firstname`, `lastname`, `email`, `password`) VALUES
+(13, '2018-05-05 20:04:37', 'aaa', 'aaa', 'aa@aa.com', '$2y$10$VM8e4QW7fg/eY7W/xyW09.38Y2ME7HNLXU/sYh0bE0BjtQ9ekGTIy'),
+(14, '2018-05-05 20:07:57', 'bb', 'bb', 'BB@BB.COM', '$2y$10$53NQaduwPOifDQSZPH4WgOTnPnBZn3zs6klxR5d0SawLsXfGFRh6W'),
+(15, '2018-05-05 20:55:58', 'zz', 'zz', 'zz@zz.com', '$2y$10$u6iOVQWiiJRR2xmu0WvE0uzlg0Eq95rGBGbrVM35FkhnUhcTz8bDG'),
+(16, '2018-05-05 20:56:09', 'uu', 'uu', 'uu@uu.com', '$2y$10$I8ck.Y6AloQKSnVqGUpRI.uf/g9kUrgPXqlsTewkS0utyidzRLuEW'),
+(17, '2018-05-05 21:13:52', 'tt', 'tt', 'tt@tt.com', '$2y$10$ZITt4gHSV5cguAqDcuI1UOlxVrXcav6NHbYKS3JNiWfu5K1L/6oy2'),
+(18, '2018-05-06 16:03:55', 'emeline', 'emeline', 'emeline.garo@gmail.com', '$2y$10$.13z54QWRLnzxGG2/4Uo1eeRnwYu/H09oukA0sCKtsVZkIOCVVhgy'),
+(19, '2018-05-06 16:04:20', 'karla', 'karla', 'karla@karla.com', '$2y$10$U47pbXLU3J8tYj5GR771/.QzM4/iO9suSzyQCyF5bbDA4qVd/1ikG');
+COMMIT;
 
---
--- Index pour la table `follower`
---
-ALTER TABLE `follower`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `tweet`
---
-ALTER TABLE `tweet`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `tweet_id` (`retweet_id`),
-  ADD KEY `type` (`type`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `fav`
---
-ALTER TABLE `fav`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `follower`
---
-ALTER TABLE `follower`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `tweet`
---
-ALTER TABLE `tweet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `fav`
---
-ALTER TABLE `fav`
-  ADD CONSTRAINT `fav_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `fav_ibfk_2` FOREIGN KEY (`fav_id`) REFERENCES `tweet` (`retweet_id`);
-
---
--- Contraintes pour la table `follower`
---
-ALTER TABLE `follower`
-  ADD CONSTRAINT `follower_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
-
---
--- Contraintes pour la table `tweet`
---
-ALTER TABLE `tweet`
-  ADD CONSTRAINT `tweet_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

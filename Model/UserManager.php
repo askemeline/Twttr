@@ -2,40 +2,41 @@
 
 namespace Model;
 
-class UserManager extends BaseManager
-{
-    public function registerUser($firstname, $lastname, $username, $email, $password)
-    {
+//use BaseManager;
+//
+//require_once ('Model/BaseManager.php');
+
+class UserManager extends BaseManager{
+
+    public function registerUser($firstname,$lastname,$email,$password){
         $pdo = $this->setPdo();
-        $stmt = $pdo->prepare('SELECT * FROM `user` WHERE email = :email');
+        $stmt = $pdo->prepare('SELECT * FROM `users` WHERE email = :email');
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $count = $stmt->rowCount();
-        if ($count > 0) {
+        if($count > 0){
             var_dump($count);
             return false;
         } else {
-            $stmt = $pdo->prepare('INSERT INTO user(id, firstname, lastname, username, email, password,creation) VALUES(NULL,:firstname, :lastname,:username, :email, :password,:creation)');
+            $stmt = $pdo->prepare('INSERT INTO users(id, creation, firstname, lastname, email, password) VALUES(NULL, :creation ,:firstname, :lastname, :email, :password)');
             $time = date('Y-m-d H:i:s');
+            $stmt->bindParam(':creation', $time);
             $stmt->bindParam(':firstname', $firstname);
             $stmt->bindParam(':lastname', $lastname);
-            $stmt->bindParam(':username', $username);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', $password);
-            $stmt->bindParam(':creation', $time);
             $stmt->execute();
             return true;
         }
     }
+    public function loginUser($email,$password){
 
-    public function loginUser($email, $password)
-    {
         $pdo = $this->setPdo();
-        $stmt = $pdo->prepare('SELECT * FROM `user` WHERE email = :email');
+        $stmt = $pdo->prepare('SELECT * FROM `users` WHERE email = :email');
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $count = $stmt->rowCount();
-        if ($count != 1) {
+        if($count != 1){
             return $false;
         } else {
             $result = $stmt->fetch();
@@ -45,12 +46,21 @@ class UserManager extends BaseManager
                 $_SESSION['u_first'] = $result['firstname'];
                 $_SESSION['u_last'] = $result['lastname'];
                 $_SESSION['u_email'] = $result['email'];
-                $_SESSION['u_username']= $username['username'];
             } else {
                 $error = "Invalid username or password";
                 return $error;
             }
         }
+    }
+    public function showUsers()
+    {
+
+        $pdo = $this->setPdo();
+        $stmt = $pdo->prepare("SELECT `firstname` FROM `users`");
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        // var_dump('<pre>',$result);
+        return $result;
     }
 
 }

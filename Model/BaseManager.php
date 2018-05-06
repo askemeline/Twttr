@@ -3,6 +3,7 @@ namespace Model;
 
 use Cool\DBManager;
 use PDO;
+
 class BaseManager
 {
     protected function setPdo(){

@@ -2,6 +2,7 @@
 
 namespace Cool;
 use PDO;
+
 class DBManager
 {
     private $pdo;

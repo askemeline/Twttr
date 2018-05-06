@@ -1,15 +1,20 @@
 {% extends 'layout.html.twig' %}
 
-{% block page_title %}Cool Framework{% endblock %}
+{% block page_title %}Twitter{% endblock %}
 
 {% block content %}
     {% if session is not defined %}
-<h1>
-  Welcome to Twtter<br>
-  <small>By Karla & Emeline The BADASSSSSSS (Future MAJOR PROMO or 	resigning...) </small>
-</h1>
-{% else %}
-Hello {{ session['u_first'] }}
-{% endif %}
 
+    {% else %}
+        <h1>Hello {{session.u_first}}</h1>
+        <textarea name="" id="" cols="30" rows="10" placeholder="tweet"></textarea>
+        <h2>List of users : </h2>
+
+        {% for user in users %}
+
+            {{ user['firstname'] }}
+
+        {% endfor %}
+
+    {% endif %}
 {% endblock %}
