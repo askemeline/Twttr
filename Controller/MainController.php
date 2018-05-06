@@ -14,16 +14,16 @@ class MainController extends BaseController
         session_start();
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
-<<<<<<< HEAD
 
-=======
+
+
             $manager = new UserManager();
             //$manager->showUsers();
             $result = $manager->showUsers();
             $data['users']=$result;
 
             //  var_dump('<pre>',$result);
->>>>>>> emeline
+
         }
         return $this->render('home.html.twig', $data);
     }

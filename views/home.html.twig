@@ -4,36 +4,6 @@
 
 {% block content %}
     {% if session is not defined %}
-<<<<<<< HEAD
-<h1>
-  Welcome to Twtter<br>
-  <small>By Karla & Emeline The BADASS </small>
-</h1>
-{% else %}
-Hello {{ session.u_first }}
-<nav>
-        <ul>
-            <li>
-                <a href="
-   "> Accueil</a>
-            </li>
-            <li>
-                <a href="">Notification</a>
-            </li>
-            <li>
-                <a href="
-  ">Message</a>
-            </li>
-        </ul>
-        <li>
-          Recherche: 
-            </li>
-    </nav>
-    
-{% endif %}
-
-{% endblock %}
-=======
 
     {% else %}
         <h1>Hello {{session.u_first}}</h1>
@@ -48,4 +18,3 @@ Hello {{ session.u_first }}
 
     {% endif %}
 {% endblock %}
->>>>>>> emeline
