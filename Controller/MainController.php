@@ -87,5 +87,18 @@ class MainController extends BaseController
 //    public function showProfileAction(){
 //        $result = queryMysql("SELECT * FROM USER WHERE username='$username'")
 //    }
+    public function tweetAction(){
+
+        $data = [];
+        session_start();
+        if(isset($_SESSION['u_id'])){
+            $this->redirectToRoute('home');
+        }
+        $tweetContent = ''; 
+        if (isset($_POST['content'])){
+            $tweetContent = htmlentities($_POST['content']);
+
+        }
+    }
 
 }

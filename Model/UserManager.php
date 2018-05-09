@@ -59,5 +59,5 @@ class UserManager extends BaseManager{
         // var_dump('<pre>',$result);
         return $result;
     }
-
+    
 }

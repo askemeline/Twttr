@@ -1,20 +1,30 @@
 {% extends 'layout.html.twig' %}
-
 {% block page_title %}Twitter{% endblock %}
 
 {% block content %}
-    {% if session is not defined %}
+ {% if session is not defined %}
+  <h1>Hello there ! We have an issue on your connection you should try again 
+  {{session.u_first}}</h1>
 
     {% else %}
         <h1>Hello {{session.u_first}}</h1>
-        <textarea name="" id="" cols="30" rows="10" placeholder="tweet"></textarea>
-        <h2>List of users : </h2>
+ {% endif %}
 
-        {% for user in users %}
+<h2>List of users : </h2>
+ 	{% for user in users %}
+		{{ user['firstname'] }}</h4>
+	{% endfor %}
+<div class="col">
+    <form action="./Controller/MainController.php" method="POST">
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" class="form-control"><?= $content ?></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+</div>
+			
 
-            {{ user['firstname'] }}
-
-        {% endfor %}
-
-    {% endif %}
+       
+   
 {% endblock %}
