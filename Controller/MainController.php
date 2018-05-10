@@ -92,13 +92,13 @@ class MainController extends BaseController
         $data = [];
         session_start();
         if(isset($_SESSION['u_id'])){
-            $this->redirectToRoute('home');
-        }
         $tweetContent = ''; 
         if (isset($_POST['content'])){
-            $tweetContent = htmlentities($_POST['content']);
-
+        $tweetContent = htmlentities($_POST['content']);
+    
+            }
         }
+        
     }
 
 }
