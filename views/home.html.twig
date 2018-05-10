@@ -4,17 +4,18 @@
 
 {% block content %}
     {% if session is not defined %}
-
+coucou
     {% else %}
-        <h1>Hello {{session.u_first}}</h1>
-        <textarea name="" id="" cols="30" rows="10" placeholder="tweet"></textarea>
-        <h2>List of users : </h2>
-
-        {% for user in users %}
-
-            {{ user['firstname'] }}
-
-        {% endfor %}
+        <h1>Hello {{session.u_first | title}}</h1>
+        <a href="?action=tweet">GO PROFILE</a><br><br>
 
     {% endif %}
+    {% for user in users %}
+
+        {{ user.firstname }}
+    {% endfor %}
+
+
+
+
 {% endblock %}

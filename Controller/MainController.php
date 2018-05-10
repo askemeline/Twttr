@@ -1,9 +1,8 @@
 <?php
 namespace Controller;
-
 use Cool\BaseController;
 use Model\UserManager;
-
+use Model\TweetManager;
 class MainController extends BaseController
 {
     public function homeAction()
@@ -16,12 +15,10 @@ class MainController extends BaseController
             //$manager->showUsers();
             $result = $manager->showUsers();
             $data['users']=$result;
-
             //  var_dump('<pre>',$result);
         }
         return $this->render('home.html.twig', $data);
     }
-
     public function registerAction()
     {
         $data = [];
@@ -29,15 +26,13 @@ class MainController extends BaseController
         if (isset($_SESSION['u_id'])) {
             $this->redirectToRoute('home');
         }
-        if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+        if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password'])) {
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
-            $username = $_POST['username'];
             $email = $_POST['email'];
-
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $manager = new UserManager();
-            $users = $manager->registerUser($firstname, $lastname,$username, $email, $password);
+            $users = $manager->registerUser($firstname, $lastname, $email, $password);
             if($users === true){
                 error_log("[". date('Y-m-d H:i:s') . "] ".$email." viens de s'inscrire", 3, "log/access.log");
             } else {
@@ -80,8 +75,21 @@ class MainController extends BaseController
         session_destroy();
         $this->redirectToRoute('home');
     }
-//    public function showProfileAction(){
-//        $result = queryMysql("SELECT * FROM USER WHERE username='$username'")
-//    }
+    public function tweetAction()
+    {
+        $data = [];
+        session_start();
+        if (isset($_SESSION['u_id'])) {
+            $data['session'] = $_SESSION;
+            $manager = new TweetManager();
+            //$manager->showUsers();
+            $result = $manager->tweet();
+            $data['posts'] = $result;
+            //   var_dump('<pre>',$result);
+        }
+        return $this->render('tweet.html.twig', $data);
+
+
+    }
 
 }

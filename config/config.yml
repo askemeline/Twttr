@@ -4,3 +4,4 @@ routes:
     login: "Main:login"
     logout: "Main:logout"
     register: "Main:register"
+    tweet: "Main:tweet"
