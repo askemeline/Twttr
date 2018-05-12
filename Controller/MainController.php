@@ -1,11 +1,9 @@
 <?php
 
 namespace Controller;
-
 use Cool\BaseController;
 use Model\UserManager;
-
-
+use Model\TweetManager;
 class MainController extends BaseController
 {
     public function homeAction()
@@ -20,12 +18,10 @@ class MainController extends BaseController
             //$manager->showUsers();
             $result = $manager->showUsers();
             $data['users']=$result;
-
             //  var_dump('<pre>',$result);
         }
         return $this->render('home.html.twig', $data);
     }
-
     public function registerAction()
     {
         $data = [];
@@ -84,21 +80,21 @@ class MainController extends BaseController
         session_destroy();
         $this->redirectToRoute('home');
     }
-//    public function showProfileAction(){
-//        $result = queryMysql("SELECT * FROM USER WHERE username='$username'")
-//    }
-    public function tweetAction(){
-
+    public function tweetAction()
+    {
         $data = [];
         session_start();
-        if(isset($_SESSION['u_id'])){
-        $tweetContent = ''; 
-        if (isset($_POST['content'])){
-        $tweetContent = htmlentities($_POST['content']);
-    
-            }
+        if (isset($_SESSION['u_id'])) {
+            $data['session'] = $_SESSION;
+            $manager = new TweetManager();
+            //$manager->showUsers();
+            $result = $manager->tweet();
+            $data['posts'] = $result;
+            //   var_dump('<pre>',$result);
         }
-        
+        return $this->render('tweet.html.twig', $data);
+
+
     }
 
 }

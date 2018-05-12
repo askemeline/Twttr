@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Twitter{% endblock %}
+
+{% block content %}
+    {% if session is not defined %}
+
+    {% else %}
+        <form action="?action=tweet" method="POST">
+            <div class="form-group">
+                <label for="message"></label>
+                <textarea name="content" id="" class="form-control"></textarea>
+            </div>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+
+        {% for post in posts %}
+
+            {{ post.content  }} <br><br>
+
+
+        {% endfor %}
+
+    {% endif %}
+
+
+
+
+{% endblock %}

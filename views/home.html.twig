@@ -3,17 +3,18 @@
 
 {% block content %}
  {% if session is not defined %}
-  <h1>Hello there ! We have an issue on your connection you should try again 
-  {{session.u_first}}</h1>
-
+coucou
     {% else %}
-        <h1>Hello {{session.u_first}}</h1>
- {% endif %}
+        <h1>Hello {{session.u_first | title}}</h1>
+        <a href="?action=tweet">GO PROFILE</a><br><br>
 
+    {% endif %}
 <h2>List of users : </h2>
- 	{% for user in users %}
-		{{ user['firstname'] }}</h4>
-	{% endfor %}
+{% for user in users %}
+
+        {{ user.firstname }}
+    {% endfor %}
+
 <div class="col">
     <form action="./Controller/MainController.php" method="POST">
         <div class="form-group">
@@ -27,4 +28,7 @@
 
        
    
-{% endblock %}
+
+    
+
+
