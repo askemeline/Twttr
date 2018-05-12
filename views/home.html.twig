@@ -2,28 +2,13 @@
 {% block page_title %}Twitter{% endblock %}
 
 {% block content %}
- {% if session is not defined %}
-coucou
+    {% if session is not defined %}
+<br>Welcome to Tweeter
     {% else %}
         <h1>Hello {{session.u_first | title}}</h1>
-        <a href="?action=tweet">GO PROFILE</a><br><br>
-
+            TWEETER'S USERS:
+        {% for user in users %}
+            <br>{{ user.firstname }}
+        {% endfor %}
     {% endif %}
-<h3>List of users : </h3>
- 	{% for user in users %}
-		{{ user['firstname'] }}</h4>
-        
-	{% endfor %}
-
-    <form action="" method="POST">
-    <br>
-            <label for="content">Tweet</label>
-            <br>
-            <br>
-            <textarea name="content" id="content" class="form-control"></textarea>
-            <br>
-            <br>
-        <button type="submit" class="btn btn-primary">Tweet</button>
-    </form>
-{% endblock %}
 
