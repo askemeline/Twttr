@@ -6,24 +6,21 @@
     {% if session is not defined %}
 
     {% else %}
-        <form action="?action=tweet" method="POST">
-            <div class="form-group">
-                <label for="message"></label>
-                <textarea name="content" id="" class="form-control"></textarea>
+        {% if data is defined %}
+            <br>
+            <form name="new-comment" method="post" action="?action=addTweet">
+                <textarea name="comment-content" id=""></textarea>
+                <br> <button type="submit" name="submit-comment-btn">Tweet!</button>
+            </form>
+
+            <div class="comments">
+                <ul>
+
+                    {% for posts in data %}
+                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }} <br> </li>
+                    {% endfor %}
+                </ul>
             </div>
-            <input type="submit" value="Submit" class="btn btn-primary" />
-        </form>
-
-        {% for post in posts %}
-
-            {{ post.content  }} <br><br>
-
-
-        {% endfor %}
-
+        {% endif %}
     {% endif %}
-
-
-
-
 {% endblock %}

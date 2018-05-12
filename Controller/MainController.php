@@ -3,6 +3,7 @@ namespace Controller;
 use Cool\BaseController;
 use Model\UserManager;
 use Model\TweetManager;
+use Model\AddTweetManager;
 class MainController extends BaseController
 {
     public function homeAction()
@@ -75,6 +76,41 @@ class MainController extends BaseController
         session_destroy();
         $this->redirectToRoute('home');
     }
+//    public function tweetAction()
+//    {
+//        $data = [];
+//        session_start();
+//        if (isset($_SESSION['u_id'])) {
+//            $data['session'] = $_SESSION;
+//            $manager = new TweetManager();
+//            //$manager->showUsers();
+//            $result = $manager->tweet();
+//            $data['posts'] = $result;
+//            //   var_dump('<pre>',$result);
+//        }
+//        return $this->render('tweet.html.twig', $data);
+//
+//
+//    }
+//    public function tweetAction()
+//    {
+//       // $data = [];
+//        session_start();
+//        if (isset($_SESSION['u_id'])) {
+////            $data['session'] = $_SESSION;
+//            $post_manager = new TweetManager();
+//            $post = $post_manager->tweet();
+//            return $this->render('tweet.html.twig', [
+//                'post'      => $post,
+//                'data'  => $post_manager->getCommentsById()
+//            ]);
+//            $this->redirectToRoute('home');
+//
+//        }
+//        //return $this->render('tweet.html.twig', $data);
+//
+//
+//    }
     public function tweetAction()
     {
         $data = [];
@@ -83,13 +119,15 @@ class MainController extends BaseController
             $data['session'] = $_SESSION;
             $manager = new TweetManager();
             //$manager->showUsers();
-            $result = $manager->tweet();
-            $data['posts'] = $result;
-            //   var_dump('<pre>',$result);
+//            $result = $manager->tweet();
+//            $data['toto'] = $result;
+//            var_dump('<pre>',$result);
+            $post =$manager->getCommentsById();
+            $data['data'] = $post;
+         //      var_dump('<pre>',$post);
         }
         return $this->render('tweet.html.twig', $data);
-
-
     }
+
 
 }

@@ -4,18 +4,14 @@
 
 {% block content %}
     {% if session is not defined %}
-coucou
+<br>Welcome to Tweeter
     {% else %}
         <h1>Hello {{session.u_first | title}}</h1>
-        <a href="?action=tweet">GO PROFILE</a><br><br>
-
+            TWEETER'S USERS:
+        {% for user in users %}
+            <br>{{ user.firstname }}
+        {% endfor %}
     {% endif %}
-    {% for user in users %}
-
-        {{ user.firstname }}
-    {% endfor %}
-
-
 
 
 {% endblock %}
