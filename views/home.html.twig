@@ -9,26 +9,21 @@ coucou
         <a href="?action=tweet">GO PROFILE</a><br><br>
 
     {% endif %}
-<h2>List of users : </h2>
-{% for user in users %}
+<h3>List of users : </h3>
+ 	{% for user in users %}
+		{{ user['firstname'] }}</h4>
+        
+	{% endfor %}
 
-        {{ user.firstname }}
-    {% endfor %}
-
-<div class="col">
-    <form action="./Controller/MainController.php" method="POST">
-        <div class="form-group">
-            <label for="content">Content</label>
-            <textarea name="content" id="content" class="form-control"><?= $content ?></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Post</button>
+    <form action="" method="POST">
+    <br>
+            <label for="content">Tweet</label>
+            <br>
+            <br>
+            <textarea name="content" id="content" class="form-control"></textarea>
+            <br>
+            <br>
+        <button type="submit" class="btn btn-primary">Tweet</button>
     </form>
-</div>
-			
-
-       
-   
-
-    
-
+{% endblock %}
 
