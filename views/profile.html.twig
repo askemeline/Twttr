@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+{% block page_title %}Twitter{% endblock %}
+{% block content %}
+{% if session is not defined %}
+<br>Welcome to Tweeter
+{% else %}
+        <h1>Hello {{session.u_first | title}}</h1>
+{% endblock %}
