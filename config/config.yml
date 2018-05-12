@@ -5,4 +5,4 @@ routes:
     logout: "Main:logout"
     register: "Main:register"
     tweet: "Main:tweet"
-    addTweet: "AddTweet:addTweet"
+    addTweet: "Main:addTweet"
