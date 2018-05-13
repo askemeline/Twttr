@@ -56,7 +56,7 @@ class UserManager extends BaseManager
         // var_dump('<pre>',$result);
         return $result;
     }
-    
+
     public function profilUser()
     {
         $pdo = $this->setPdo();
@@ -66,5 +66,7 @@ class UserManager extends BaseManager
         $result = $stmt->fetch();
         return $result;
 
+
     }
+    
 }

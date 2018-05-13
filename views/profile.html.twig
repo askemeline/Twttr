@@ -4,6 +4,8 @@
     {% if session is not defined %}
     <br>Welcome to Tweeter
     {% else %}
+            <a class="right register" href="?action=home">Home</a>
+
             <h1>Hello {{session.u_first | title}}</h1>
         {% endif %}
     {% endblock %}
