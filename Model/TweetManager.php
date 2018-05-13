@@ -17,17 +17,18 @@ class TweetManager extends BaseManager
         return $comments;
     }
 
-    public function addTweet()
+    public function addTweet($user, $content)
     {
         $pdo = $this->setPdo();
-        $stmt = $pdo->prepare('INSERT INTO posts(id,content,creation_date) VALUES (NULL, ?, NOW())');
-       // $stmt->execute();
+        $stmt = $pdo->prepare('INSERT INTO posts(id,user,content,creation_date) VALUES (NULL ,:user,:content, NOW())');
+        $stmt->bindParam(":user", $user);
+        $stmt->bindParam(":content", $content);
+//        $time = date('Y-m-d H:i:s');
+//        $stmt->bindParam(':creation_date', $time);
+        //  $stmt->execute();
         //$comments = $sth->fetchAll();
-        $stmt->execute(array($_POST['comment-content']));
+        $stmt->execute();
         return $stmt;
-
-
     }
 
 }
-

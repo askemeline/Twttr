@@ -7,4 +7,3 @@ routes:
     tweet: "Main:tweet"
     addTweet: "Main:addTweet"
     profileUser : "Main:profileUser"
-
