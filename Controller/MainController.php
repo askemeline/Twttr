@@ -148,20 +148,19 @@ class MainController extends BaseController
             exit();
         }
         }
-    
+
     function profileUserAction()
     {
-        session_start(); 
-        if (!empty($_SESSION['u_id'])){
-            $manager = new ProfileManager(); 
-            $result = 
-            $result = $manager->tweetAction();
-
+        $data = [];
+        session_start();
+        if (isset($_SESSION['u_id'])) {
+            $data['session'] = $_SESSION;
+            $manager=new UserManager();
+            $result = $manager->profilUser();
+            $data['users'] = $result;
         }
-        return $this->render('profile.html.twig' ,$data); 
-
+        return $this->render('profile.html.twig', $data);
     }
-
-
-
 }
+
+

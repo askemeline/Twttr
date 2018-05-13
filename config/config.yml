@@ -6,4 +6,5 @@ routes:
     register: "Main:register"
     tweet: "Main:tweet"
     addTweet: "Main:addTweet"
-    profileUser : "Main:profile"
+    profileUser : "Main:profileUser"
+
