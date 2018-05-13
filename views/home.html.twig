@@ -6,8 +6,8 @@
     {% if session is not defined %}
 <br>Welcome to Tweeter
     {% else %}
-        <h1>Hello {{session.u_first | title}}</h1>
-            TWEETER'S USERS:
+        {#<h1>Hello {{session.u_first | title}}</h1>#}
+            <br>TWEETER'S USERS:<br>
         {% for user in users %}
             <br>{{ user.firstname }}
         {% endfor %}
