@@ -16,8 +16,8 @@
                     {% for posts in data %}
                         <li><h4>{{ posts.firstname }}</h4> {{ posts.content }}
                             <br>
-                            {{ posts.creation_date|date("m/d/Y", "Europe/Paris") }}
-                            {{ posts.creation_date|date('H:i:s', 'Europe/Paris') }}
+                            {{ posts.creation_date }}
+                           
 
                             <br> </li>
                     {% endfor %}
