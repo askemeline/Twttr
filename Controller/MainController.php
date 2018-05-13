@@ -97,7 +97,7 @@ class MainController extends BaseController
     function addTweetAction()
     {
         session_start();
-        if (!empty($_POST['comment-content']) &&(isset($_SESSION['u_id']))) {
+        if (!empty($_POST['comment-content']) && (isset($_SESSION['u_id']))) {
             $manager = new TweetManager();
             $errors = $manager->addTweet($_SESSION['u_id'],htmlentities($_POST['comment-content']));
             header('Location: ?action=tweet');

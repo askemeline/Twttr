@@ -3,9 +3,7 @@
 {% block page_title %}Twitter{% endblock %}
 
 {% block content %}
-    {% if session is not defined %}
-
-    {% else %}
+    {% if session is defined %}
         {% if data is defined %}
             <br>
             <form name="new-comment" method="post" action="?action=addTweet">
@@ -15,12 +13,18 @@
 
             <div class="comments">
                 <ul>
-
                     {% for posts in data %}
-                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }} <br> </li>
+                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }}
+                            <br>
+                            {{ posts.creation_date|date("m/d/Y", "Europe/Paris") }}
+                            {{ posts.creation_date|date('H:i:s') }}
+
+                            <br> </li>
                     {% endfor %}
                 </ul>
             </div>
         {% endif %}
+    {% else %}
+
     {% endif %}
 {% endblock %}
