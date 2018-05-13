@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Twitter{% endblock %}
+
+{% block content %}
+    {% if session is not defined %}
+
+    {% else %}
+        {% if data is defined %}
+            <br>
+            <form name="new-comment" method="post" action="?action=addTweet">
+                <textarea name="comment-content" id=""></textarea>
+                <br> <button type="submit" name="submit-comment-btn">Tweet!</button>
+            </form>
+
+            <div class="comments">
+                <ul>
+
+                    {% for posts in data %}
+                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }} <br> </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

@@ -1,20 +1,15 @@
 {% extends 'layout.html.twig' %}
-
 {% block page_title %}Twitter{% endblock %}
 
 {% block content %}
     {% if session is not defined %}
-
+<br>Welcome to Tweeter
     {% else %}
-        <h1>Hello {{session.u_first}}</h1>
-        <textarea name="" id="" cols="30" rows="10" placeholder="tweet"></textarea>
-        <h2>List of users : </h2>
 
+        <h1>Hello {{session.u_first | title}}</h1>
+            TWEETER'S USERS:
         {% for user in users %}
-
-            {{ user['firstname'] }}
-
+            <br>{{ user.firstname }}
         {% endfor %}
-
     {% endif %}
 {% endblock %}

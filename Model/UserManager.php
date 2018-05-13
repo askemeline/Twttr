@@ -1,10 +1,9 @@
 <?php
-
 namespace Model;
 use Cool\DBManager;
 
-class UserManager extends BaseManager{
-
+class UserManager extends BaseManager
+{
     public function registerUser($firstname,$lastname,$email,$password){
         $pdo = $this->setPdo();
         $stmt = $pdo->prepare('SELECT * FROM `users` WHERE email = :email');
@@ -27,7 +26,6 @@ class UserManager extends BaseManager{
         }
     }
     public function loginUser($email,$password){
-
         $pdo = $this->setPdo();
         $stmt = $pdo->prepare('SELECT * FROM `users` WHERE email = :email');
         $stmt->bindParam(':email', $email);
@@ -51,13 +49,22 @@ class UserManager extends BaseManager{
     }
     public function showUsers()
     {
-
         $pdo = $this->setPdo();
-        $stmt = $pdo->prepare("SELECT `firstname` FROM `users`");
+        $stmt = $pdo->prepare("SELECT `firstname` FROM `users`ORDER BY creation DESC   ");
         $stmt->execute();
         $result = $stmt->fetchAll();
         // var_dump('<pre>',$result);
         return $result;
     }
+    
+    public function profilUser()
+    {
+        $pdo = $this->setPdo();
+        $stmt = $pdo->prepare('SELECT `users` WHERE firstname = :firstname');
+        //$stmt->bindParam(':firstname', $firstname);
+        //$stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
 
+    }
 }
