@@ -6,8 +6,8 @@
     {% if session is defined %}
         {% if data is defined %}
             <br>
-            <form name="new-comment" method="post" action="?action=addTweet">
-                <textarea name="comment-content" id=""></textarea>
+            <form  id="formTweet" name="new-comment" method="post" action="?action=addTweet">
+                <textarea name="comment-content" ></textarea>
                 <br> <button type="submit" name="submit-comment-btn">Tweet!</button>
             </form>
 
@@ -16,8 +16,8 @@
                     {% for posts in data %}
                         <li><h4>{{ posts.firstname }}</h4> {{ posts.content }}
                             <br>
-                            {#{{ posts.creation_date }}#}
-                            <br> </li>
+                            <br> 
+                        </li>
 
                     {% endfor %}
                 </ul>

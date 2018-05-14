@@ -30,5 +30,14 @@ class TweetManager extends BaseManager
         $stmt->execute();
         return $stmt;
     }
+    public function showUsersTweet($user )
+    {
+        $pdo = $this->setPdo(); 
+        $stmt = $pdo-> prepare('SELECT users.firstname, posts.content FROM users RIGHT JOIN posts ON posts.id = users.id'); 
+        $stmt->bindParam(":user_id",$user); 
+        $stmt->bindParam(":content", $content);
+        $sth-> execute();
+        return $stmt; 
+    }
 
 }

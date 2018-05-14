@@ -96,7 +96,7 @@ class MainController extends BaseController
         return $this->render('tweet.html.twig', $data);
     }
 
-    function addTweetAction()
+    public function addTweetAction()
     {
         session_start();
         if (!empty($_POST['comment-content']) && (isset($_SESSION['u_id']))) {
@@ -107,18 +107,22 @@ class MainController extends BaseController
         }
         }
 
-    function profileUserAction()
+    public function profileUserAction()
     {
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
             $manager=new UserManager();
-            $result = $manager->profilUser();
+            $result = $manager->profileUser();
             $data['users'] = $result;
         }
+        
+
         return $this->render('profile.html.twig', $data);
     }
+
+    
 }
 
 

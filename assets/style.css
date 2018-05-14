@@ -32,3 +32,8 @@ li a:hover:not(.active) {
 li a:hover {
     color: #1da1f2;
 }
+.comments{
+    border: 2px; 
+    border-style: solid; 
+    border-color: black; 
+}

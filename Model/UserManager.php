@@ -57,7 +57,7 @@ class UserManager extends BaseManager
         return $result;
     }
 
-    public function profilUser()
+    public function profileUser()
     {
         $pdo = $this->setPdo();
         $stmt = $pdo->prepare('SELECT `users` WHERE firstname = :firstname');

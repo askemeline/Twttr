@@ -8,4 +8,11 @@
 
             <h1>Hello {{session.u_first | title}}</h1>
         {% endif %}
+        {% for posts in data %}
+                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }}
+                            <br>
+                            {#{{ posts.creation_date }}#}
+                            <br> </li>
+
+                    {% endfor %}
     {% endblock %}
