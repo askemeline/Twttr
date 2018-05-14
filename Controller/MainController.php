@@ -91,6 +91,7 @@ class MainController extends BaseController
             $manager = new TweetManager();
             $data = $manager->tweetPost();
             //$data['data'] = $post;
+            //var_dump($data);
         }
         return $this->render('tweet.html.twig', array(
             'data' => $data,
@@ -111,18 +112,36 @@ class MainController extends BaseController
 
     function profileUserAction()
     {
+//        $data = [];
+//        session_start();
+//       // var_dump($_SESSION);
+//        if (isset($_SESSION['u_id'])) {
+//            $data['session'] = $_SESSION;
+//            $manager = new UserManager();
+//            $result = $manager->profileUser($_SESSION['u_first'],$_SESSION['u_email']);
+//          var_dump('<pre>',$data);
+//            $data['users'] = $result;
+//
+//
+//        }
+//        return $this->render('profile.html.twig', $data);
         $data = [];
         session_start();
-       // var_dump($_SESSION);
         if (isset($_SESSION['u_id'])) {
-            $data['session'] = $_SESSION;
+            // $data['session'] = $_SESSION;
             $manager = new UserManager();
-            $result = $manager->profileUser($_SESSION['u_first']);
-          // var_dump('<pre>',$data);
-            $data['users'] = $result;
-
-
+            $data = $manager->profileUser();
+            //$data['data'] = $post;
+            //var_dump($data);
         }
-        return $this->render('profile.html.twig', $data);
+        return $this->render('profile.html.twig', array(
+            'data' => $data,
+            'session' => $_SESSION
+        ));
     }
+
+
+    // $data['session'] = $_SESSION;
+
+
 }

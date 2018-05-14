@@ -12,17 +12,18 @@
             </form>
 
             <div class="comments">
-                <ul>
+
 
                     {% for posts in data %}
+                <ul>
                         <li><h4><a chref="">{{ posts.firstname }}</a>   Posted {{ posts.creation_date }}</h4>
                                 <div class="msg">{{ posts.content }}
                             </div>                            <br>
 
                             </li>
-
-                    {% endfor %}
                 </ul>
+                    {% endfor %}
+
             </div>
         {% endif %}
     {% else %}

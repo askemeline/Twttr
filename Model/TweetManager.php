@@ -11,9 +11,9 @@ class TweetManager extends BaseManager
     {
 
         $pdo = $this->setPdo();
-//        $sth = $pdo->prepare('SELECT users.firstname,users.id, posts.user,posts.content FROM users INNER JOIN posts ON posts.user = users.id WHERE users.id = :user_id ORDER BY creation_date DESC LIMIT 10');
+       // $sth = $pdo->prepare('SELECT users.firstname,users.id, posts.user,posts.content FROM users INNER JOIN posts ON posts.user = users.id WHERE users.id = :user_id ORDER BY creation_date DESC LIMIT 10');
 
-        $sth = $pdo->prepare('SELECT posts.*, users.firstname FROM posts INNER JOIN users ON user = :user_id ORDER BY creation_date DESC LIMIT 10');
+       $sth = $pdo->prepare('SELECT posts.*, users.firstname FROM posts INNER JOIN users ON user = :user_id ORDER BY creation_date DESC LIMIT 10');
         $sth->bindParam(':user_id', $_SESSION['u_id']);
         $sth->execute();
         // $sth->execute([$id]);
