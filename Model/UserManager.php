@@ -32,7 +32,7 @@ class UserManager extends BaseManager
         $stmt->execute();
         $count = $stmt->rowCount();
         if($count != 1){
-            return $false;
+            return false;
         } else {
             $result = $stmt->fetch();
             $hash = $result['password'];
@@ -56,15 +56,17 @@ class UserManager extends BaseManager
         // var_dump('<pre>',$result);
         return $result;
     }
-
-    public function profileUser()
+    public function profileUser($firstname)
     {
+      //  var_dump($firstname);
         $pdo = $this->setPdo();
-        $stmt = $pdo->prepare('SELECT `users` WHERE firstname = :firstname');
+        $stmt = $pdo->prepare('SELECT `firstname` FROM `users` WHERE firstname = :firstname');
+        $stmt->bindParam(':firstname', $firstname);
+
         //$stmt->bindParam(':firstname', $firstname);
-        //$stmt->execute();
-        $result = $stmt->fetch();
-        return $result;
+        $stmt->execute();
+        //$result = $stmt->fetch();
+        return $stmt;
 
 
     }
