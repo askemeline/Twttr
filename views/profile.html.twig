@@ -4,6 +4,8 @@
     {% if session is not defined %}
     <br>Welcome to Tweeter
     {% else %}
-            <h1>Hello {{session.u_first | title}}</h1>
+            <h1>Hello {{session.u_first}}</h1>
+        your twitt:
+
         {% endif %}
     {% endblock %}

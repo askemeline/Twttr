@@ -18,6 +18,7 @@ class MainController extends BaseController
             $manager = new UserManager();
             $result = $manager->showUsers();
             $data['users'] = $result;
+//            var_dump('<pre>',$result);
         }
         return $this->render('home.html.twig', $data);
     }
@@ -27,7 +28,7 @@ class MainController extends BaseController
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-            $this->redirectToRoute('home');
+            $this->redirectToRoute('login');
         }
         if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password'])) {
             $firstname = $_POST['firstname'];
@@ -43,7 +44,7 @@ class MainController extends BaseController
                 error_log("[" . date('Y-m-d H:i:s') . "] " . "l'inscription de " . $email . " a echouer", 3, "log/security.log");
                 return $this->render('register.html.twig', $data);
             }
-            $this->redirectToRoute('home');
+            $this->redirectToRoute('login');
         }
         return $this->render('register.html.twig', $data);
     }
@@ -86,12 +87,15 @@ class MainController extends BaseController
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-            $data['session'] = $_SESSION;
+           // $data['session'] = $_SESSION;
             $manager = new TweetManager();
-            $post = $manager->tweetPost();
-            $data['data'] = $post;
+            $data = $manager->tweetPost();
+            //$data['data'] = $post;
         }
-        return $this->render('tweet.html.twig', $data);
+        return $this->render('tweet.html.twig', array(
+            'data' => $data,
+            'session' =>$_SESSION
+        ));
     }
 
     function addTweetAction()
@@ -109,11 +113,15 @@ class MainController extends BaseController
     {
         $data = [];
         session_start();
+       // var_dump($_SESSION);
         if (isset($_SESSION['u_id'])) {
             $data['session'] = $_SESSION;
-            $manager=new UserManager();
-            $result = $manager->profileUser();
+            $manager = new UserManager();
+            $result = $manager->profileUser($_SESSION['u_first']);
+          // var_dump('<pre>',$data);
             $data['users'] = $result;
+
+
         }
         return $this->render('profile.html.twig', $data);
     }

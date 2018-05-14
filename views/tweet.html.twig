@@ -7,17 +7,19 @@
         {% if data is defined %}
             <br>
             <form name="new-comment" method="post" action="?action=addTweet">
-                <textarea name="comment-content" id=""></textarea>
+                <textarea name="comment-content" id="content"></textarea>
                 <br> <button type="submit" name="submit-comment-btn">Tweet!</button>
             </form>
 
             <div class="comments">
                 <ul>
+
                     {% for posts in data %}
-                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }}
-                            <br>
-                            {#{{ posts.creation_date }}#}
-                            <br> </li>
+                        <li><h4><a chref="">{{ posts.firstname }}</a>   Posted {{ posts.creation_date }}</h4>
+                                <div class="msg">{{ posts.content }}
+                            </div>                            <br>
+
+                            </li>
 
                     {% endfor %}
                 </ul>
