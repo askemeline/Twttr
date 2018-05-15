@@ -19,7 +19,7 @@ class TweetManager extends BaseManager
 //        return $comments;
         $pdo = $this->setPdo();
         //$sth = $pdo->prepare('SELECT users.firstname,users.id, posts.user,posts.content FROM users RIGHT JOIN posts ON posts.user = users.id ORDER BY creation_date DESC ');
-        $sth = $pdo->prepare('SELECT users.firstname,users.id, posts.* FROM users LEFT JOIN posts ON posts.user = users.id ORDER BY creation_date DESC  ');
+        $sth = $pdo->prepare('SELECT users.firstname,users.id, posts.* FROM users LEFT JOIN posts ON posts.user = users.id ORDER BY creation_date DESC LIMIT 15 ');
         $sth->execute();
         $comments = $sth->fetchAll();
         return $comments;
