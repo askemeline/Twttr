@@ -55,7 +55,7 @@ li a:hover {
 }
 
 html, body, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -78,8 +78,9 @@ time, mark, audio, video {
 
 html {
     background-color: #fbfbfb;
-}
 
+}
+body{text-align: center;}
 .nav-bar {
     background: #fff;
     border-bottom: 1px solid #CCC;
@@ -255,7 +256,8 @@ a:hover {
 .msg{
     background-color: white;
     height: 50px;
-    width: 300px;
+    /*width: 300px;*/
+
 
 }
 /*.comments{*/
