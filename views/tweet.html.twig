@@ -6,12 +6,10 @@
     {% if session is defined %}
         {% if data is defined %}
             <br>
-            <form name="new-rt-comment" method="post" action="?action=addTweet">
 
-            </form>
 
             <form name="new-comment" method="post" action="?action=addTweet">
-                <textarea name="comment-content" id="content" cols="45" rows="5"></textarea>
+                <textarea name="comment-content" id="content" cols="45" rows="3"></textarea>
                 <input type="hidden" name="retweet" value="">
                     <br> <button type="submit" name="submit-comment-btn" class="btn btn-primary">Tweet!</button>
             </form>
@@ -27,9 +25,8 @@
                             <br>
                         </li>
                     </ul>
-                        {#<input type="hidden" name="retweet" value="">#}
+                        <input type="hidden" name="hidden-retweet">
                     </form>
-
 
                     {% endfor %}
 

@@ -77,4 +77,8 @@ class UserManager extends BaseManager{
         return $comments;
 
     }
+
+    function displayUsers(){
+
+    }
 }
