@@ -6,21 +6,30 @@
     {% if session is defined %}
         {% if data is defined %}
             <br>
+
+
             <form name="new-comment" method="post" action="?action=addTweet">
-                <textarea name="comment-content" id=""></textarea>
-                <br> <button type="submit" name="submit-comment-btn">Tweet!</button>
+                <textarea name="comment-content" id="content" cols="45" rows="3"></textarea>
+                <input type="hidden" name="retweet" value="">
+                    <br> <button type="submit" name="submit-comment-btn" class="btn btn-primary">Tweet!</button>
             </form>
 
             <div class="comments">
-                <ul>
-                    {% for posts in data %}
-                        <li><h4>{{ posts.firstname }}</h4> {{ posts.content }}
+                {% for posts in data %}
+                    <form name="new-comment" method="post" action="?action=addTweet">
+                    <ul>
+                        <li><h4><a chref="">{{ posts.firstname }}</a>   Posted {{ posts.creation_date }}</h4>
+                            <div class="msg">{{ posts.content }}<br>
+                                <button id="button-retweet" type="submit">RT</button><br>
+                            </div>
                             <br>
-                            {#{{ posts.creation_date }}#}
-                            <br> </li>
+                        </li>
+                    </ul>
+                        <input type="hidden" name="hidden-retweet">
+                    </form>
 
                     {% endfor %}
-                </ul>
+
             </div>
         {% endif %}
     {% else %}

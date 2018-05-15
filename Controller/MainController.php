@@ -20,6 +20,7 @@ class MainController extends BaseController
             $manager = new UserManager();
             $result = $manager->showUsers();
             $data['users'] = $result;
+//            var_dump('<pre>',$result);
         }
         return $this->render('home.html.twig', $data);
     }
@@ -29,7 +30,7 @@ class MainController extends BaseController
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-            $this->redirectToRoute('home');
+            $this->redirectToRoute('login');
         }
         if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['password'])) {
             $firstname = $_POST['firstname'];
@@ -45,7 +46,7 @@ class MainController extends BaseController
                 error_log("[" . date('Y-m-d H:i:s') . "] " . "l'inscription de " . $email . " a echouer", 3, "log/security.log");
                 return $this->render('register.html.twig', $data);
             }
-            $this->redirectToRoute('home');
+            $this->redirectToRoute('login');
         }
         return $this->render('register.html.twig', $data);
     }
@@ -88,15 +89,23 @@ class MainController extends BaseController
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-            $data['session'] = $_SESSION;
+           // $data['session'] = $_SESSION;
             $manager = new TweetManager();
-            $post = $manager->tweetPost();
-            $data['data'] = $post;
+            $data = $manager->tweetPost();
+            //$data['data'] = $post;
+            //var_dump($data);
+        }else
+        {
+            $this->redirectToRoute('home');
         }
-        return $this->render('tweet.html.twig', $data);
+        return $this->render('tweet.html.twig', array(
+            'data' => $data,
+            'session' =>$_SESSION
+        ));
+
     }
 
-    function addTweetAction()
+    public function addTweetAction()
     {
         session_start();
         if (!empty($_POST['comment-content']) && (isset($_SESSION['u_id']))) {
@@ -105,20 +114,55 @@ class MainController extends BaseController
             header('Location: ?action=tweet');
             exit();
         }
-        }
+    }
+//    function addRTTweetAction()
+//    {
+//        session_start();
+//        if ((isset($_SESSION['u_id']))) {
+//            $manager = new TweetManager();
+//            $errors = $manager->addRTTweet($_SESSION['u_id'],htmlentities($_POST['hidden-retweet']));
+//            header('Location: ?action=tweet');
+//            exit();
+//        }
+//    }
 
-    function profileUserAction()
+    public function profileUserAction()
     {
+//        $data = [];
+//        session_start();
+//       // var_dump($_SESSION);
+//        if (isset($_SESSION['u_id'])) {
+//            $data['session'] = $_SESSION;
+//            $manager = new UserManager();
+//            $result = $manager->profileUser($_SESSION['u_first'],$_SESSION['u_email']);
+//          var_dump('<pre>',$data);
+//            $data['users'] = $result;
+//
+//
+//        }
+//        return $this->render('profile.html.twig', $data);
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-            $data['session'] = $_SESSION;
-            $manager=new UserManager();
-            $result = $manager->profilUser();
-            $data['users'] = $result;
+            // $data['session'] = $_SESSION;
+            $manager = new UserManager();
+            $data = $manager->profileUser();
+            //$data['data'] = $post;
+            //var_dump($data);
         }
-        return $this->render('profile.html.twig', $data);
+        else
+        {
+            $this->redirectToRoute('home');
+        }
+        return $this->render('profile.html.twig', array(
+            'data' => $data,
+            'session' => $_SESSION
+        ));
     }
+
+
+
+    // $data['session'] = $_SESSION;
+
+
 }
-
-

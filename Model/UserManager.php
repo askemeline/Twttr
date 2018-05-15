@@ -32,7 +32,7 @@ class UserManager extends BaseManager
         $stmt->execute();
         $count = $stmt->rowCount();
         if($count != 1){
-            return $false;
+            return false;
         } else {
             $result = $stmt->fetch();
             $hash = $result['password'];
@@ -56,17 +56,32 @@ class UserManager extends BaseManager
         // var_dump('<pre>',$result);
         return $result;
     }
-
-    public function profilUser()
+    public function profileUser()
     {
+//     $pdo = $this->setPdo();
+//        $stmt = $pdo->prepare('SELECT posts.*, FROM posts INNER JOIN users ON user = :firstname WHERE firtname =:firstname, email =:email');
+//        $stmt->bindParam(':firstname', $firstname);
+//        $stmt->bindParam(':email', $email);
+//
+//        //$stmt->bindParam(':firstname', $firstname);
+//        //$stmt->execute();
+//        $result = $stmt->fetchAll();
+//        return $result;
+
         $pdo = $this->setPdo();
-        $stmt = $pdo->prepare('SELECT `users` WHERE firstname = :firstname');
-        //$stmt->bindParam(':firstname', $firstname);
-        //$stmt->execute();
-        $result = $stmt->fetch();
-        return $result;
+        $sth = $pdo->prepare('SELECT users.firstname,users.id,posts.* FROM users INNER JOIN posts ON posts.user = users.id WHERE users.id = :user_id ORDER BY creation_date DESC LIMIT 10');
+
+//        $sth = $pdo->prepare('SELECT posts.*, users.firstname FROM posts INNER JOIN users ON user = :user_id ORDER BY creation_date DESC LIMIT 10');
+        $sth->bindParam(':user_id', $_SESSION['u_id']);
+        $sth->execute();
+        // $sth->execute([$id]);
+        $comments = $sth->fetchAll();
+        return $comments;
 
 
     }
-    
+
+    function displayUsers(){
+
+    }
 }
