@@ -3,12 +3,12 @@
 
 {% block content %}
     {% if session is not defined %}
-<br>Welcome to Tweeter
+<br><h1>Welcome to <br>THE BADASS <i><mark>TWEETER</mark></i></h1>
+        <div style="color:white">Don't destroy this beautiful website Puck, please !</div>
     {% else %}
-        {#<h1>Hello {{session.u_first | title}}</h1>#}
-            <br>TWEETER'S USERS:<br>
+        <h2>TWEETER'S MEMBERS:<br></h2>
         {% for user in users %}
-            <br> <a href src="">{{ user.firstname }}</a>
+            <h3><a href src="" name="user">{{ user.firstname }}</a></h3>
         {% endfor %}
     {% endif %}
 {% endblock %}

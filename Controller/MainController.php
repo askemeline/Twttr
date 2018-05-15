@@ -94,11 +94,15 @@ class MainController extends BaseController
             $data = $manager->tweetPost();
             //$data['data'] = $post;
             //var_dump($data);
+        }else
+        {
+            $this->redirectToRoute('home');
         }
         return $this->render('tweet.html.twig', array(
             'data' => $data,
             'session' =>$_SESSION
         ));
+
     }
 
     public function addTweetAction()
@@ -110,7 +114,17 @@ class MainController extends BaseController
             header('Location: ?action=tweet');
             exit();
         }
-        }
+    }
+//    function addRTTweetAction()
+//    {
+//        session_start();
+//        if ((isset($_SESSION['u_id']))) {
+//            $manager = new TweetManager();
+//            $errors = $manager->addRTTweet($_SESSION['u_id'],htmlentities($_POST['hidden-retweet']));
+//            header('Location: ?action=tweet');
+//            exit();
+//        }
+//    }
 
     public function profileUserAction()
     {
@@ -136,11 +150,16 @@ class MainController extends BaseController
             //$data['data'] = $post;
             //var_dump($data);
         }
+        else
+        {
+            $this->redirectToRoute('home');
+        }
         return $this->render('profile.html.twig', array(
             'data' => $data,
             'session' => $_SESSION
         ));
     }
+
 
 
     // $data['session'] = $_SESSION;

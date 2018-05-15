@@ -80,5 +80,8 @@ class UserManager extends BaseManager
 
 
     }
-    
+
+    function displayUsers(){
+
+    }
 }
