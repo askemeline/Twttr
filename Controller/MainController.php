@@ -20,7 +20,6 @@ class MainController extends BaseController
             $manager = new UserManager();
             $result = $manager->showUsers();
             $data['users'] = $result;
-//            var_dump('<pre>',$result);
         }
         return $this->render('home.html.twig', $data);
     }
@@ -89,11 +88,8 @@ class MainController extends BaseController
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-           // $data['session'] = $_SESSION;
             $manager = new TweetManager();
             $data = $manager->tweetPost();
-            //$data['data'] = $post;
-            //var_dump($data);
         }else
         {
             $this->redirectToRoute('home');
@@ -128,27 +124,12 @@ class MainController extends BaseController
 
     public function profileUserAction()
     {
-//        $data = [];
-//        session_start();
-//       // var_dump($_SESSION);
-//        if (isset($_SESSION['u_id'])) {
-//            $data['session'] = $_SESSION;
-//            $manager = new UserManager();
-//            $result = $manager->profileUser($_SESSION['u_first'],$_SESSION['u_email']);
-//          var_dump('<pre>',$data);
-//            $data['users'] = $result;
-//
-//
-//        }
-//        return $this->render('profile.html.twig', $data);
         $data = [];
         session_start();
         if (isset($_SESSION['u_id'])) {
-            // $data['session'] = $_SESSION;
             $manager = new UserManager();
             $data = $manager->profileUser();
-            //$data['data'] = $post;
-            //var_dump($data);
+           
         }
         else
         {
@@ -159,10 +140,19 @@ class MainController extends BaseController
             'session' => $_SESSION
         ));
     }
+    /*public function userProfileAction()
+    {
+        $data = []; 
+        session_start(); 
+        if(empty($_POST['email']) && empty($_POST['password'])){
+            $manager = new UserManager();
+            $data = $manager->userProfile();
+    
+            return $this->render('login.html.twig', $data);
+        }; 
+       
 
-
-
-    // $data['session'] = $_SESSION;
-
+    }*/ 
 
 }
+
